@@ -33,7 +33,7 @@ enum custom_keycodes {
 #define ___NUMBER_R1____                                  KC_6, KC_7, KC_8, KC_9, KC_0
 
 #define ______CLMC______    KC_LCTL
-#define _____PRTETC_____    KC_PSCR, QK_BOOT, KC_PAUS
+#define _____PRTETC_____    MUTE_TEAMS, QK_BOOT, KC_PAUS
 #define ____INSHMPU_____    KC_INS,  KC_HOME, KC_PGUP
 #define ____DELENPD_____    KC_DEL,  KC_END,  KC_PGDN
 #define _____CASPC______    KC_CAPS, KC_LALT, KC_SPC, KC_RALT, KC_RCTL

@@ -33,18 +33,18 @@ enum custom_keycodes {
 #define ___NUMBER_R1____                                  KC_6, KC_7, KC_8, KC_9, KC_0
 
 #define ______CLMC______    KC_LCTL
-#define _____PRTETC_____    MUTE_TEAMS, QK_BOOT, KC_PAUS
+#define _____PRTETC_____    KC_PSCR, QK_BOOT, KC_PAUS
 #define ____INSHMPU_____    KC_INS,  KC_HOME, KC_PGUP
 #define ____DELENPD_____    KC_DEL,  KC_END,  KC_PGDN
 #define _____CASPC______    KC_CAPS, KC_LALT, KC_SPC, KC_RALT, KC_RCTL
 #define _____CASPW______    KC_CAPS, KC_LGUI, KC_LALT, KC_SPC, KC_RALT, KC_RGUI, KC_APP, KC_RCTL
 
-#define _____NUMR1______    KC_NUM,  KC_PSLS, KC_PAST, KC_PMNS
-#define _____NUMR2______    KC_P7,   KC_P8,   KC_P9,   KC_PPLS
-#define _____NUMR3T_____    KC_P4,   KC_P5,   KC_P6,   KC_PCMM
-#define _____NUMR3______    KC_P4,   KC_P5,   KC_P6
-#define _____NUMR4______    KC_P1,   KC_P2,   KC_P3,   KC_PENT
-#define _____NUMR5______    KC_P0,            KC_PDOT
+#define _____NUMR1______    KC_NUM,      KC_PSLS, KC_PAST, KC_PMNS
+#define _____NUMR2______    KC_P7,       KC_P8,   KC_P9,   KC_PPLS
+#define _____NUMR3T_____    KC_P4,       KC_P5,   KC_P6,   KC_PCMM
+#define _____NUMR3______    KC_P4,       KC_P5,   KC_P6
+#define _____NUMR4______    KC_P1,       KC_P2,   KC_P3,   KC_PENT
+#define _____NUMR5______    DIAC(KC_P0),          KC_PDOT
 
 #define ____FKEYS_B1____    KC_F1, KC_F2,  KC_F3,  KC_F4
 #define ____FKEYS_B2____    KC_F5, KC_F6,  KC_F7,  KC_F8

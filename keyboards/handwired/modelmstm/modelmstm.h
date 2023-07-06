@@ -34,15 +34,16 @@
     K11, K12,   K73, K74, K64, K65, K66, K67, K77, K78, K68, K6C, K6D, K7E,      K63,   K60, K0J, K1J,   K61, K6H, K6I, K7J, \
     K02, K01,   K00,    K70,                K71,             K03,      K72,                  K0F,        K7H,      K7I \
 ) { \
-    { K00, K01, K02, K03, XXX, XXX, XXX, K07, K08, K09, K0A, K0B, XXX, XXX, K0E, K0F, K0G, XXX, XXX, K0J }, \
-    { K10, K11, K12, XXX, K14, K15, K16, K17, K18, K19, K1A, K1B, K1C, K1D, K1E, K1F, K1G, K1H, K1I, K1J }, \
-    { K20, K21, XXX, XXX, K24, K25, K26, K27, K28, K29, K2A, K2B, K2C, K2D, K2E, K2F, K2G, K2H, K2I, XXX }, \
-    { XXX, K31, K32, XXX, K34, XXX, XXX, K37, K38, K39, K3A, K3B, K3C, XXX, K3E, K3F, K3G, K3H, XXX, XXX }, \
-    { K40, K41, K42, XXX, K44, K45, K46, K47, K48, K49, K4A, K4B, K4C, K4D, K4E, K4F, K4G, K4H, K4I, XXX }, \
-    { XXX, K51, K52, XXX, XXX, XXX, XXX, K57, K58, K59, K5A, K5B, K5C, XXX, K5E, XXX, K5G, XXX, XXX, XXX }, \
-    { K60, K61, K62, K63, K64, K65, K66, K67, K68, K69, K6A, K6B, K6C, K6D, K6E, K6F, XXX, K6H, K6I, XXX }, \
-    { K70, K71, K72, K73, K74, XXX, XXX, K77, K78, K79, K7A, K7B, XXX, XXX, K7E, XXX, XXX, K7H, K7I, K7J } \
+/* 00 */ { K00, K01, K02, K03, XXX, XXX, XXX, K07, K08, K09, K0A, K0B, XXX, XXX, K0E, K0F, K0G, XXX, XXX, K0J }, \
+/* 01 */ { K10, K11, K12, XXX, K14, K15, K16, K17, K18, K19, K1A, K1B, K1C, K1D, K1E, K1F, K1G, K1H, K1I, K1J }, \
+/* 02 */ { K20, K21, XXX, XXX, K24, K25, K26, K27, K28, K29, K2A, K2B, K2C, K2D, K2E, K2F, K2G, K2H, K2I, XXX }, \
+/* 03 */ { XXX, K31, K32, XXX, K34, XXX, XXX, K37, K38, K39, K3A, K3B, K3C, XXX, K3E, K3F, K3G, K3H, XXX, XXX }, \
+/* 04 */ { K40, K41, K42, XXX, K44, K45, K46, K47, K48, K49, K4A, K4B, K4C, K4D, K4E, K4F, K4G, K4H, K4I, XXX }, \
+/* 05 */ { XXX, K51, K52, XXX, XXX, XXX, XXX, K57, K58, K59, K5A, K5B, K5C, XXX, K5E, XXX, K5G, XXX, XXX, XXX }, \
+/* 06 */ { K60, K61, K62, K63, K64, K65, K66, K67, K68, K69, K6A, K6B, K6C, K6D, K6E, K6F, XXX, K6H, K6I, XXX }, \
+/* 07 */ { K70, K71, K72, K73, K74, XXX, XXX, K77, K78, K79, K7A, K7B, XXX, XXX, K7E, XXX, XXX, K7H, K7I, K7J } \
 }
+/*         0    1    2    3    4    5    6    7    8    9    10   11   12   13   14   15   16   17   18   19    */
 
 #define LAYOUT_terminal102( \
     K5A,      K5B, K5C, K5D, K5E, K5F, K5G, K5H, K5I, K5J, K5K, K5L, K5M,   K5N, K5O, K5P, \

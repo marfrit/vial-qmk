@@ -50,11 +50,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                              ____FRW12_24____,
                                                                              ____FRW1_12_____,
 
-        KC_PSCR,         KC_ESC,         KC_GRV,           ___NUMBER_L1____, ___NUMBER_R1____,  KC_MINS, KC_EQL,  KC_BSPC,      ____INSHMPU_____,        _____NUMR1______,
-        QK_BOOT,         KC_PAUS,        KC_TAB,           _DIACRITICS_L1__, _DIACRITICS_R1__,           KC_LBRC, KC_RBRC,      ____DELENPD_____,        _____NUMR2______,
-        EEP_RST,         TG(_SYMBOLS),   ______CLMC______, _DIACRITICS_L2__, _DIACRITICS_R2__,  KC_QUOT, KC_NUHS, KC_ENT,            KC_UP,              _____NUMR3T_____,
-        TG(_NAVIGATION), TG(_FUNCTION),  KC_LSFT, KC_NUBS, _DIACRITICS_L3__, _DIACRITICS_R3__,                    KC_RSFT,  KC_LEFT, KC_HOME, KC_RIGHT,  _____NUMR4______,
-        KC_APP,          KC_LGUI,                                    _____CASPC______,                                               KC_DOWN,            _____NUMR5______
+        KC_PSCR,         KC_ESC,         KC_GRV,           ___NUMBER_L1____, ___NUMBER_R1____,  KC_MINS, KC_EQL,  KC_BSPC,      ____INSHMPU_____,         _____NUMR1______,
+        QK_BOOT,         KC_PAUS,        KC_TAB,           _DIACRITICS_L1__, _DIACRITICS_R1__,           KC_LBRC, KC_RBRC,      ____DELENPD_____,         _____NUMR2______,
+        EEP_RST,         TG(_SYMBOLS),   ______CLMC______, _DIACRITICS_L2__, _DIACRITICS_R2__,  KC_QUOT, KC_NUHS, KC_ENT,            KC_UP,               _____NUMR3T_____,
+        TG(_NAVIGATION), TG(_FUNCTION),  KC_LSFT, KC_NUBS, _DIACRITICS_L3__, _DIACRITICS_R3__,                    KC_RSFT,  KC_LEFT, KC_HOME, MUTE_TEAMS, _____NUMR4______,
+        KC_APP,          KC_LGUI,                                    _____CASPC______,                                               KC_DOWN,             _____NUMR5______
     ),
 
     [_FUNCTION] = LAYOUT_terminal122_wrapper(

@@ -18,6 +18,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
+#define EXTERNAL_EEPROM_SPI_SLAVE_SELECT_PIN PF7
+#define EXTERNAL_EEPROM_BYTE_COUNT 16384
+#define EXTERNAL_EEPROM_PAGE_SIZE 64
+#define EXTERNAL_EEPROM_ADDRESS_SIZE 2
+#define EXTERNAL_EEPROM_WP_PIN D10
+
 /*
  * Pin and interrupt configuration
  */
@@ -70,7 +76,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define IBMPC_RST_PIN     PINB
 #define IBMPC_RST_DDR     DDRB
 #define IBMPC_RST_BIT0    6
-#define IBMPC_RST_BIT1    7
+#define IBMPC_RST_BIT1    4
 
 /* reset for XT Type-1 keyboard: low pulse for 500ms */
 #define IBMPC_RST_HIZ() do { \

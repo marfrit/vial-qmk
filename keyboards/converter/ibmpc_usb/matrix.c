@@ -519,7 +519,7 @@ bool matrix_has_ghost_in_row(uint8_t row)
 }
 #endif
 
-void led_set(uint8_t usb_led)
+void led_set_user(uint8_t usb_led)
 {
     uint8_t ibmpc_led = 0;
 //    if (usb_led &  (1<<USB_LED_SCROLL_LOCK)) {
@@ -556,13 +556,13 @@ void led_set(uint8_t usb_led)
     //   https://geekhack.org/index.php?topic=103648.msg2894921#msg2894921
 
     // TODO: PC_TERMINAL_IBM_RT support
-    if (usb_led &  (1<<USB_LED_SCROLL_LOCK)) {
+    if (usb_led &  (1<<IBMPC_LED_SCROLL_LOCK)) {
         ibmpc_led |= (1<<IBMPC_LED_SCROLL_LOCK);
     }
-    if (usb_led &  (1<<USB_LED_NUM_LOCK)) {
+    if (usb_led &  (1<<IBMPC_LED_NUM_LOCK)) {
         ibmpc_led |= (1<<IBMPC_LED_NUM_LOCK);
     }
-    if (usb_led &  (1<<USB_LED_CAPS_LOCK)) {
+    if (usb_led &  (1<<IBMPC_LED_CAPS_LOCK)) {
         ibmpc_led |= (1<<IBMPC_LED_CAPS_LOCK);
     }
     ibmpc_host_set_led(ibmpc_led);

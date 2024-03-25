@@ -18,12 +18,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
-#define EXTERNAL_EEPROM_SPI_SLAVE_SELECT_PIN PF7
+#define EXTERNAL_EEPROM_SPI_SLAVE_SELECT_PIN F7
 #define EXTERNAL_EEPROM_BYTE_COUNT 16384
 #define EXTERNAL_EEPROM_PAGE_SIZE 64
 #define EXTERNAL_EEPROM_ADDRESS_SIZE 2
-#define EXTERNAL_EEPROM_WP_PIN PB6
-#define EXTERNAL_EEPROM_SPI_CLOCK_DIVISOR 16
+#define EXTERNAL_EEPROM_WP_PIN B6
+#define EXTERNAL_EEPROM_SPI_CLOCK_DIVISOR 32
 
 /*
  * Pin and interrupt configuration

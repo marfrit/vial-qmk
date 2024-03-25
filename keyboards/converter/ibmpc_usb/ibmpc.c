@@ -242,9 +242,9 @@ void ibmpc_interrupt_service_routine(void) {
     } else {
         // This gives 2.0ms at least before timeout
 #if defined(__AVR__)
-        if ((uint8_t)(t - timer_start) >= 3) {
+        if ((uint8_t)(t - timer_start) >= 5) {
 #else
-        if ((uint8_t)(timer_elapsed(timer_start)) >= 3) {
+        if ((uint8_t)(timer_elapsed(timer_start)) >= 5) {
 #endif
             ibmpc_isr_debug = isr_state;
             ibmpc_error = IBMPC_ERR_TIMEOUT;

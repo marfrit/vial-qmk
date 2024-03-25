@@ -26,4 +26,5 @@ SRC += matrix.c ibmpc.c
 
 EEPROM_DRIVER = spi
 
-CFLAGS+=-Wno-unused-variable --param=min-pagesize=0
+CFLAGS+=-Wno-unused-variable
+# --param=min-pagesize=0

@@ -23,7 +23,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define EXTERNAL_EEPROM_PAGE_SIZE 64
 #define EXTERNAL_EEPROM_ADDRESS_SIZE 2
 #define EXTERNAL_EEPROM_WP_PIN B6
-#define EXTERNAL_EEPROM_SPI_CLOCK_DIVISOR 32
+#define EXTERNAL_EEPROM_SPI_CLOCK_DIVISOR 16
+#define LED_NUM_LOCK_PIN F6
+#define LED_CAPS_LOCK_PIN F5
+#define LED_SCROLL_LOCK_PIN F7
 
 /*
  * Pin and interrupt configuration

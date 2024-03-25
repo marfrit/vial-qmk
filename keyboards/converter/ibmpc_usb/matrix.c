@@ -555,6 +555,24 @@ void led_set_user(uint8_t usb_led)
     // - Some other Terminals like G80-2551 supports the command.
     //   https://geekhack.org/index.php?topic=103648.msg2894921#msg2894921
 
+#ifdef LED_NUM_LOCK_PIN
+//        DDRF |= (1<<7);
+    writePin(LED_NUM_LOCK_PIN, (usb_led >> IBMPC_LED_NUM_LOCK) & 1);
+//        PORTF |= (1<<7);
+#endif
+//    } else {
+#ifdef LED_CAPS_LOCK_PIN
+//        DDRF &= ~(1<<7);
+    writePin(LED_CAPS_LOCK_PIN, (usb_led >> IBMPC_LED_CAPS_LOCK) & 1);
+//        PORTF &= ~(1<<7);
+#endif
+//    }
+#ifdef LED_SCROLL_LOCK_PIN
+//    if (usb_led &  (1<<USB_LED_NUM_LOCK)) {
+    writePin(LED_SCROLL_LOCK_PIN, (usb_led >> IBMPC_LED_SCROLL_LOCK) & 1);
+//        DDRF |= (1<<6);
+#endif
+
     // TODO: PC_TERMINAL_IBM_RT support
     if (usb_led &  (1<<IBMPC_LED_SCROLL_LOCK)) {
         ibmpc_led |= (1<<IBMPC_LED_SCROLL_LOCK);

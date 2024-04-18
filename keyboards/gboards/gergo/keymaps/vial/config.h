@@ -1,0 +1,12 @@
+
+#pragma once
+
+#define PERMISSIVE_HOLD
+#define IGNORE_MOD_TAP_INTERRUPT
+#undef  TAPPING_TERM
+#define TAPPING_TERM 175
+
+#define VIAL_KEYBOARD_UID {0xA0, 0x73, 0x9A, 0x10, 0x07, 0xDA, 0x75, 0x07}
+
+#define VIAL_UNLOCK_COMBO_ROWS { 0, 2 }
+#define VIAL_UNLOCK_COMBO_COLS { 0, 13 }

@@ -144,13 +144,13 @@ uint8_t matrix_scan(void)
     static uint16_t init_time;
 
     if (ibmpc_error) {
-        xprintf("\n%u ERR:%02X ISR:%04X ", timer_read(), ibmpc_error, ibmpc_isr_debug);
+        dprintf("\n%u ERR:%02X ISR:%04X ", timer_read(), ibmpc_error, ibmpc_isr_debug);
 
         // when recv error, neither send error nor buffer full
         if (!(ibmpc_error & (IBMPC_ERR_SEND | IBMPC_ERR_FULL))) {
             // keyboard init again
             if (state == LOOP) {
-                xprintf("[RST] ");
+                dprintf("[RST] ");
                 state = ERROR;
             }
         }
@@ -162,16 +162,16 @@ uint8_t matrix_scan(void)
 
     // check protocol change AT/XT
     if (ibmpc_protocol && ibmpc_protocol != current_protocol) {
-        xprintf("\n%u PRT:%02X ISR:%04X ", timer_read(), ibmpc_protocol, ibmpc_isr_debug);
+        dprintf("\n%u PRT:%02X ISR:%04X ", timer_read(), ibmpc_protocol, ibmpc_isr_debug);
 
         // protocol change between AT and XT indicates that
         // keyboard is hotswapped or something goes wrong.
         // This requires initializing keyboard again probably.
         if (((current_protocol&IBMPC_PROTOCOL_XT) && (ibmpc_protocol&IBMPC_PROTOCOL_AT)) ||
             ((current_protocol&IBMPC_PROTOCOL_AT) && (ibmpc_protocol&IBMPC_PROTOCOL_XT))) {
-            xprintf("\nERR:%02X ISR:%04X ", ibmpc_error, ibmpc_isr_debug);
+            dprintf("\nERR:%02X ISR:%04X ", ibmpc_error, ibmpc_isr_debug);
             if (state == LOOP) {
-                xprintf("[CHG] ");
+                dprintf("[CHG] ");
                 state = ERROR;
             }
         }
@@ -182,7 +182,7 @@ uint8_t matrix_scan(void)
 
     switch (state) {
         case INIT:
-            xprintf("I%u ", timer_read());
+            dprintf("I%u ", timer_read());
             keyboard_kind = NONE;
             keyboard_id = 0x0000;
             current_protocol = 0;
@@ -202,7 +202,7 @@ uint8_t matrix_scan(void)
             }
             break;
         case AT_RESET:
-            xprintf("A%u ", timer_read());
+            dprintf("A%u ", timer_read());
 
             // and keeps it until receiving reset. Sending reset here may be useful to clear it, perhaps.
             // https://github.com/tmk/tmk_keyboard/wiki/IBM-PC-AT-Keyboard-Protocol#select-alternate-scan-codesf0
@@ -235,7 +235,7 @@ uint8_t matrix_scan(void)
             ibmpc_host_isr_clear();
             ibmpc_host_enable();    // soft reset: idle(Clock Hi/Data Hi)
 
-            xprintf("X%u ", timer_read());
+            dprintf("X%u ", timer_read());
             init_time = timer_read();
             state = WAIT_AA;
             break;
@@ -253,7 +253,7 @@ uint8_t matrix_scan(void)
             }
             */
             if (ibmpc_host_recv() != -1) {  // wait for AA
-                xprintf("W%u ", timer_read());
+                dprintf("W%u ", timer_read());
                 init_time = timer_read();
                 state = WAIT_AABF;
             }
@@ -265,7 +265,7 @@ uint8_t matrix_scan(void)
                 state = READ_ID;
             }
             if (ibmpc_host_recv() != -1) {  // wait for BF
-                xprintf("W%u ", timer_read());
+                dprintf("W%u ", timer_read());
                 init_time = timer_read();
                 state = WAIT_AABFBF;
             }
@@ -275,13 +275,13 @@ uint8_t matrix_scan(void)
                 state = READ_ID;
             }
             if (ibmpc_host_recv() != -1) {  // wait for BF
-                xprintf("W%u ", timer_read());
+                dprintf("W%u ", timer_read());
                 state = READ_ID;
             }
             break;
         case READ_ID:
             keyboard_id = read_keyboard_id();
-            xprintf("R%u ", timer_read());
+            dprintf("R%u ", timer_read());
 
             if (0x0000 == keyboard_id) {            // CodeSet2 AT(IBM PC AT 84-key)
                 keyboard_kind = PC_AT;
@@ -310,24 +310,24 @@ uint8_t matrix_scan(void)
                 // https://github.com/tmk/tmk_keyboard/wiki/IBM-PC-AT-Keyboard-Protocol#ab90
                 // https://github.com/tmk/tmk_keyboard/wiki/IBM-PC-AT-Keyboard-Protocol#ab91
 
-                xprintf("\n5576_CS82h:");
+                dprintf("\n5576_CS82h:");
                 keyboard_kind = PC_AT;
                 if ((0xFA == ibmpc_host_send(0xF0)) &&
                     (0xFA == ibmpc_host_send(0x82))) {
                     // switch to code set 82h
                     // https://github.com/tmk/tmk_keyboard/wiki/IBM-PC-AT-Keyboard-Protocol#ibm-5576-scan-codes-set
-                    xprintf("OK ");
+                    dprintf("OK ");
                 } else {
-                    xprintf("NG ");
+                    dprintf("NG ");
                     if (0xAB91 == keyboard_id) {
                         // This must be a Televideo DEC keyboard, which piggybacks on the same keyboard_id as IBM 5576-003
                         // This keyboard normally starts up using code set 1, but we request code set 2 here:
                         if ((0xFA == ibmpc_host_send(0xF0)) &&
                             (0xFA == ibmpc_host_send(0x03))) {
-                            xprintf("OK ");
+                            dprintf("OK ");
                             keyboard_kind = PC_TERMINAL;
                         } else {
-                            xprintf("NG ");
+                            dprintf("NG ");
                         }
                     }
                 }
@@ -343,7 +343,7 @@ uint8_t matrix_scan(void)
             } else if (0x7F00 == (keyboard_id & 0xFF00)) {  // CodeSet3 Terminal 1394204
                 keyboard_kind = PC_TERMINAL;
             } else {
-                xprintf("\nUnknown ID: Report to TMK ");
+                dprintf("\nUnknown ID: Report to TMK ");
                 if ((0xFA == ibmpc_host_send(0xF0)) &&
                     (0xFA == ibmpc_host_send(0x02))) {
                     // switch to code set 2
@@ -357,12 +357,12 @@ uint8_t matrix_scan(void)
                 }
             }
 
-            xprintf("\nID:%04X(%s%s) ", keyboard_id, KEYBOARD_KIND_STR(keyboard_kind), ID_STR(keyboard_id));
+            dprintf("\nID:%04X(%s%s) ", keyboard_id, KEYBOARD_KIND_STR(keyboard_kind), ID_STR(keyboard_id));
 
             state = SETUP;
             break;
         case SETUP:
-            xprintf("S%u ", timer_read());
+            dprintf("S%u ", timer_read());
             switch (keyboard_kind) {
                 case PC_XT:
                     break;
@@ -379,7 +379,7 @@ uint8_t matrix_scan(void)
                     break;
             }
             state = LOOP;
-            xprintf("L%u ", timer_read());
+            dprintf("L%u ", timer_read());
         case LOOP:
             {
                 uint16_t code = ibmpc_host_recv();
@@ -397,7 +397,7 @@ uint8_t matrix_scan(void)
                     matrix_clear();
                     clear_keyboard();
 
-                    xprintf("\n[CLR] ");
+                    dprintf("\n[CLR] ");
                     break;
                 }
 
@@ -486,11 +486,11 @@ void matrix_print(void)
     for (uint8_t row = 0; row < MATRIX_ROWS; row++) {
 
 #if (MATRIX_COLS <= 8)
-        xprintf("%02X: %08b%s\n", row, bitrev(matrix_get_row(row)),
+        dprintf("%02X: %08b%s\n", row, bitrev(matrix_get_row(row)),
 #elif (MATRIX_COLS <= 16)
-        xprintf("%02X: %016b%s\n", row, bitrev16(matrix_get_row(row)),
+        dprintf("%02X: %016b%s\n", row, bitrev16(matrix_get_row(row)),
 #elif (MATRIX_COLS <= 32)
-        xprintf("%02X: %032b%s\n", row, bitrev32(matrix_get_row(row)),
+        dprintf("%02X: %032b%s\n", row, bitrev32(matrix_get_row(row)),
 #endif
 #ifdef MATRIX_HAS_GHOST
         matrix_has_ghost_in_row(row) ?  " <ghost" : ""
@@ -658,7 +658,7 @@ static uint8_t cs1_e0code(uint8_t code) {
         case 0x63: return 0x7B; // Wake  (MUHENKAN)
 
         default:
-           xprintf("!CS1_E0_%02X!\n", code);
+           dprintf("!CS1_E0_%02X!\n", code);
            return code;
     }
     return 0x00;
@@ -956,7 +956,7 @@ static int8_t process_cs2(uint8_t code)
                         matrix_make(code);
                     } else {
                         matrix_clear();
-                        xprintf("!CS2_INIT!\n");
+                        dprintf("!CS2_INIT!\n");
                         return -1;
                     }
             }
@@ -979,7 +979,7 @@ static int8_t process_cs2(uint8_t code)
                         matrix_make(cs2_e0code(code));
                     } else {
                         matrix_clear();
-                        xprintf("!CS2_E0!\n");
+                        dprintf("!CS2_E0!\n");
                         return -1;
                     }
             }
@@ -1003,7 +1003,7 @@ static int8_t process_cs2(uint8_t code)
                         matrix_break(code);
                     } else {
                         matrix_clear();
-                        xprintf("!CS2_F0!\n");
+                        dprintf("!CS2_F0!\n");
                         return -1;
                     }
             }
@@ -1023,7 +1023,7 @@ static int8_t process_cs2(uint8_t code)
                         matrix_break(cs2_e0code(code));
                     } else {
                         matrix_clear();
-                        xprintf("!CS2_E0_F0!\n");
+                        dprintf("!CS2_E0_F0!\n");
                         return -1;
                     }
             }
@@ -1155,7 +1155,7 @@ static int8_t process_cs3(uint8_t code)
         case 0xBF:  // Part of keyboard ID
         case 0xAB:  // Part keyboard ID
             state = READY;
-            xprintf("!CS3_RESET!\n");
+            dprintf("!CS3_RESET!\n");
             return -1;
     }
 
@@ -1205,7 +1205,7 @@ static int8_t process_cs3(uint8_t code)
                     if (code < 0x80) {
                         matrix_make(code);
                     } else {
-                        xprintf("!CS3_READY!\n");
+                        dprintf("!CS3_READY!\n");
                     }
             }
             break;
@@ -1248,7 +1248,7 @@ static int8_t process_cs3(uint8_t code)
                     if (code < 0x80) {
                         matrix_break(code);
                     } else {
-                        xprintf("!CS3_F0!\n");
+                        dprintf("!CS3_F0!\n");
                    }
             }
             break;

@@ -14,8 +14,8 @@ enum layers {
 
 enum custom_keycodes {
 #ifdef VIA_ENABLE
-    MUTE_TEAMS = USER00,
-    MUTE_SKYPE = USER01,
+//    MUTE_TEAMS = USER00,
+//    MUTE_SKYPE = USER01,
     NEW_SAFE_RANGE = SAFE_RANGE,
 #else
     MUTE_TEAMS = SAFE_RANGE,

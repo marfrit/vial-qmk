@@ -38,8 +38,8 @@ bool oled_task_user(void) {
 }
 #endif // OLED_ENABLE
 
-static uint16_t mute_hold_timert = 0;
-static uint16_t mute_hold_timers = 0;
+//static uint16_t mute_hold_timert = 0;
+//static uint16_t mute_hold_timers = 0;
 
 __attribute__ ((weak))
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -51,7 +51,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   }
   switch (keycode)
   {
-  case MUTE_TEAMS:
+/*   case MUTE_TEAMS:
     if (record->event.pressed) {
         mute_hold_timert = timer_read();
         tap_code16(LCTL(LSFT(KC_M)));
@@ -69,7 +69,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             tap_code16(LGUI(KC_F4));
     }
     break;
-
+ */
   default:
     break;
   }
